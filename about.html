@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Fayed</title>
 <meta name="description" content="Md Hammad Ullah Fayed — Automation Engineer at Global Leaf Tobacco Ltd, HB Jamil Group of Industries.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About — Fayed">
+<meta property="og:description" content="Automation Engineer turning manual operations work into production systems.">
+<meta property="og:image" content="https://fayed038.github.io/og-cover.png">
+<meta property="og:url" content="https://fayed038.github.io/about.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About — Fayed">
+<meta name="twitter:description" content="Automation Engineer turning manual operations work into production systems.">
+<meta name="twitter:image" content="https://fayed038.github.io/og-cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -274,6 +283,34 @@ a:focus-visible,.btn:focus-visible,.clink:focus-visible,.nav-cta:focus-visible{o
   </div>
 </section>
 
+<section id="how-i-work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Process</div>
+      <h2 class="section-title">How I work.</h2>
+      <p class="section-sub">The same four-step approach behind every case study on the Work page.</p>
+    </div>
+    <div class="stack-grid reveal">
+      <div class="stack-cell">
+        <h4>01 · Find the manual step</h4>
+        <ul><li>Shadow the current process</li><li>Find where hours go to repetition</li><li>Confirm it's worth automating</li></ul>
+      </div>
+      <div class="stack-cell">
+        <h4>02 · Design for the edge cases</h4>
+        <ul><li>Map the exceptions first</li><li>Build validation before the happy path</li><li>Assume messy input, not clean data</li></ul>
+      </div>
+      <div class="stack-cell">
+        <h4>03 · Ship something running</h4>
+        <ul><li>Working in production beats polished in a demo</li><li>Fast idea-to-deployment cycles</li><li>Iterate against real usage</li></ul>
+      </div>
+      <div class="stack-cell">
+        <h4>04 · Make it unattended</h4>
+        <ul><li>No babysitting required</li><li>Logs and flags, not silent failures</li><li>Still running, six months later</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap footer-inner">
     <span>© 2026 Md Hammad Ullah Fayed</span>
@@ -358,11 +395,10 @@ animateDots();
 
 /* terminal simulation */
 const projectsData=[
-  {id:'hbtrail',name:'HBTrail',tag:'GPS field-attendance tracking',result:'targets full rollout across 10 regions'},
-  {id:'gptracker',name:'GP Tracker Watcher',tag:'zero-touch attendance reports',result:'3hrs → under 1 minute, daily'},
-  {id:'formation001r',name:'Officer Tracking Reports (Formation-001R)',tag:'auto-generated PDF reports, 5 zones',result:'zero manual formatting per run'},
-  {id:'formation002s',name:'Production Log Digitization (Formation-002S)',tag:'handwritten logs → structured Excel',result:'one locked template, every date'},
-  {id:'masterhier',name:'Master Hierarchy & SIM Registry',tag:'8 regional files → 1 master source',result:'conflicts surfaced automatically'}
+  {id:'gp-tracker-report-automation',name:'GP Tracker Report Automation',tag:'scheduled reporting pipeline',result:'hours â minutes, unattended daily'},
+  {id:'factory-production-log-automation-app',name:'Factory Production Log Automation App',tag:'digitized production records',result:'one standardized data structure'},
+  {id:'hbtrace',name:'HBTrace',tag:'structured field event logging',result:'every event traceable and auditable'},
+  {id:'hbtrail',name:'HBTrail',tag:'immutable audit trail framework',result:'compliance-ready records on demand'}
 ];
 
 const termBody=document.getElementById('termBody');
@@ -401,7 +437,7 @@ if(termBody){
     help:()=>{printLine('available commands:','term-ok');['whoami','projects','skills','contact','open <project>','clear'].forEach(c=>printLine('  '+c));},
     whoami:()=>{printLine('Md Hammad Ullah Fayed','term-ok');printLine('Automation Engineer — Dhaka, Bangladesh');},
     projects:()=>{projectsData.forEach(p=>printLine(`${p.id.padEnd(16)} — ${p.tag}`));},
-    skills:()=>printLine('Python · SQL · Pandas · openpyxl · WeasyPrint · Streamlit · LLM-assisted workflows'),
+    skills:()=>printLine('Python · SQL · Pandas · openpyxl · WeasyPrint · Streamlit · Automation architecture'),
     contact:()=>{printLine('email: hufayed19@gmail.com','term-ok');printLine('github: github.com/Fayed038');printLine('linkedin: /in/md-hammad-ullah-fayed-251744271');},
     clear:()=>{termBody.innerHTML='';}
   };

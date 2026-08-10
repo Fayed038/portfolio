@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Fayed</title>
 <meta name="description" content="Get in touch with Md Hammad Ullah Fayed for automation and data pipeline work.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact — Fayed">
+<meta property="og:description" content="Get in touch for automation and data pipeline work.">
+<meta property="og:image" content="https://fayed038.github.io/og-cover.png">
+<meta property="og:url" content="https://fayed038.github.io/contact.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — Fayed">
+<meta name="twitter:description" content="Get in touch for automation and data pipeline work.">
+<meta name="twitter:image" content="https://fayed038.github.io/og-cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -359,11 +368,10 @@ animateDots();
 
 /* terminal simulation */
 const projectsData=[
-  {id:'hbtrail',name:'HBTrail',tag:'GPS field-attendance tracking',result:'targets full rollout across 10 regions'},
-  {id:'gptracker',name:'GP Tracker Watcher',tag:'zero-touch attendance reports',result:'3hrs → under 1 minute, daily'},
-  {id:'formation001r',name:'Officer Tracking Reports (Formation-001R)',tag:'auto-generated PDF reports, 5 zones',result:'zero manual formatting per run'},
-  {id:'formation002s',name:'Production Log Digitization (Formation-002S)',tag:'handwritten logs → structured Excel',result:'one locked template, every date'},
-  {id:'masterhier',name:'Master Hierarchy & SIM Registry',tag:'8 regional files → 1 master source',result:'conflicts surfaced automatically'}
+  {id:'gp-tracker-report-automation',name:'GP Tracker Report Automation',tag:'scheduled reporting pipeline',result:'hours â minutes, unattended daily'},
+  {id:'factory-production-log-automation-app',name:'Factory Production Log Automation App',tag:'digitized production records',result:'one standardized data structure'},
+  {id:'hbtrace',name:'HBTrace',tag:'structured field event logging',result:'every event traceable and auditable'},
+  {id:'hbtrail',name:'HBTrail',tag:'immutable audit trail framework',result:'compliance-ready records on demand'}
 ];
 
 const termBody=document.getElementById('termBody');
@@ -402,7 +410,7 @@ if(termBody){
     help:()=>{printLine('available commands:','term-ok');['whoami','projects','skills','contact','open <project>','clear'].forEach(c=>printLine('  '+c));},
     whoami:()=>{printLine('Md Hammad Ullah Fayed','term-ok');printLine('Automation Engineer — Dhaka, Bangladesh');},
     projects:()=>{projectsData.forEach(p=>printLine(`${p.id.padEnd(16)} — ${p.tag}`));},
-    skills:()=>printLine('Python · SQL · Pandas · openpyxl · WeasyPrint · Streamlit · LLM-assisted workflows'),
+    skills:()=>printLine('Python · SQL · Pandas · openpyxl · WeasyPrint · Streamlit · Automation architecture'),
     contact:()=>{printLine('email: hufayed19@gmail.com','term-ok');printLine('github: github.com/Fayed038');printLine('linkedin: /in/md-hammad-ullah-fayed-251744271');},
     clear:()=>{termBody.innerHTML='';}
   };

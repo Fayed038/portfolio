@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Work — Fayed</title>
-<meta name="description" content="Case studies: HBTrail, GP Tracker Watcher, Formation-001R, Formation-002S, Master Hierarchy Registry.">
+<meta name="description" content="Case studies in reporting automation, industrial data digitization, and traceability systems.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Work — Fayed">
+<meta property="og:description" content="Case studies in reporting automation, industrial data digitization, and traceability systems.">
+<meta property="og:image" content="https://fayed038.github.io/og-cover.png">
+<meta property="og:url" content="https://fayed038.github.io/work.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Work — Fayed">
+<meta name="twitter:description" content="Case studies in reporting automation, industrial data digitization, and traceability systems.">
+<meta name="twitter:image" content="https://fayed038.github.io/og-cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -139,6 +148,21 @@ h2.section-title{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4v
 .case-block.outcome p{color:var(--text);}
 .case-metric{font-family:var(--mono);font-size:13px;color:var(--lime);margin-top:6px;}
 
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:2px 0;}
+@media(max-width:760px){.how-steps{grid-template-columns:1fr 1fr;}}
+.how-step{font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--dim);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 12px 13px;}
+.how-num{display:block;color:var(--lime);font-weight:700;font-size:11px;margin-bottom:6px;letter-spacing:.04em;}
+
+.preview-toggle{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--dim);background:none;border:1px solid var(--line);border-radius:5px;padding:9px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .18s;align-self:flex-start;}
+.preview-toggle:hover{border-color:var(--lime);color:var(--lime);}
+.preview-toggle .chev{transition:transform .2s;}
+.preview-toggle.open .chev{transform:rotate(90deg);}
+.preview-panel{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.preview-panel.open{max-height:480px;}
+.preview-inner{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin-top:4px;}
+.preview-inner svg{width:100%;height:auto;display:block;border-radius:5px;}
+.preview-caption{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:10px;line-height:1.6;}
+
 /* STACK */
 .stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:8px;overflow:hidden;}
 @media(max-width:860px){.stack-grid{grid-template-columns:repeat(2,1fr);}}
@@ -242,80 +266,256 @@ a:focus-visible,.btn:focus-visible,.clink:focus-visible,.nav-cta:focus-visible{o
 
 <div class="page-hero wrap">
   <div class="page-eyebrow">Work</div>
-  <h1 class="page-title">Five pipelines, each replacing a manual process that used to run on people.</h1>
+  <h1 class="page-title">Four systems, each replacing a manual process that used to run on people.</h1>
   <p class="page-desc">Problem → approach → outcome for each. This is what's actually running in production, not a portfolio gloss.</p>
 </div>
 
 <section id="work" style="padding-top:40px;">
   <div class="wrap">
 
+    <div class="case reveal" id="gp-tracker-report-automation">
+      <div class="case-left">
+        <div class="case-index">01 / Reporting</div>
+        <div class="case-status">Live</div>
+        <div class="case-name">GP Tracker Report Automation</div>
+        <div class="case-tags"><span class="tag">Python</span><span class="tag">Scheduled Jobs</span><span class="tag">Report Generation</span></div>
+      </div>
+      <div class="case-right">
+        <div class="case-block"><div class="case-block-label">Problem</div><p>Recurring operational reports were compiled by hand from raw tracking exports — a repetitive, error-prone process that consumed hours of staff time on every reporting cycle.</p></div>
+        <div class="case-block"><div class="case-block-label">Approach</div><p>Designed a Python service built around a folder-watch trigger: dropping a new export into a monitored directory kicks off ingestion automatically, no manual run step required. Pandas handles the aggregation and cross-validates each record against expected checkpoints using a configurable time-window match, so near-miss timestamps still resolve correctly instead of producing false flags. The validated output renders directly into a standardized report format on a fixed schedule.</p></div>
+        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>Reporting turnaround dropped from hours to minutes, running unattended on a daily schedule with no manual intervention.</p></div>
+        <button class="preview-toggle" data-label="View interface" onclick="togglePreview(this,'p-gptracker')"><span class="chev">▸</span> View interface</button>
+        <div class="preview-panel" id="p-gptracker">
+          <div class="preview-inner">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="700" height="300" fill="var(--panel-2)"/>
+              <rect x="0" y="0" width="700" height="40" fill="var(--panel)"/>
+              <circle cx="24" cy="20" r="4" fill="var(--lime)"/>
+              <text x="40" y="25" font-family="JetBrains Mono" font-size="12" fill="var(--text)">Daily Report — auto-generated</text>
+              <text x="580" y="25" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">status: complete</text>
+              <g font-family="JetBrains Mono" font-size="10" fill="var(--faint)">
+                <text x="24" y="66">RECORD</text><text x="220" y="66">CHECKPOINT</text><text x="400" y="66">MATCH</text><text x="540" y="66">STATUS</text>
+              </g>
+              <line x1="20" y1="76" x2="680" y2="76" stroke="var(--line)"/>
+              <g font-family="JetBrains Mono" font-size="11" fill="var(--dim)">
+                <text x="24" y="100">XXX-014</text><text x="220" y="100">09:02</text><text x="400" y="100">✓</text>
+                <rect x="536" y="88" width="60" height="18" rx="9" fill="var(--lime-dim)"/><text x="546" y="100" fill="var(--lime)">OK</text>
+                <text x="24" y="130">XXX-021</text><text x="220" y="130">09:14</text><text x="400" y="130">✓</text>
+                <rect x="536" y="118" width="60" height="18" rx="9" fill="var(--lime-dim)"/><text x="546" y="130" fill="var(--lime)">OK</text>
+                <text x="24" y="160">XXX-033</text><text x="220" y="160">—</text><text x="400" y="160">✕</text>
+                <rect x="536" y="148" width="60" height="18" rx="9" fill="var(--orange-dim)"/><text x="546" y="160" fill="var(--orange)">FLAG</text>
+                <text x="24" y="190">XXX-047</text><text x="220" y="190">09:31</text><text x="400" y="190">✓</text>
+                <rect x="536" y="178" width="60" height="18" rx="9" fill="var(--lime-dim)"/><text x="546" y="190" fill="var(--lime)">OK</text>
+              </g>
+              <line x1="20" y1="210" x2="680" y2="210" stroke="var(--line)"/>
+              <text x="24" y="238" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">GENERATED</text>
+              <text x="24" y="258" font-family="JetBrains Mono" font-size="12" fill="var(--text)">0.9s · unattended run</text>
+              <text x="480" y="238" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">MATCHED / FLAGGED</text>
+              <rect x="480" y="248" width="180" height="10" rx="5" fill="var(--line)"/>
+              <rect x="480" y="248" width="150" height="10" rx="5" fill="var(--lime)"/>
+            </svg>
+            <p class="preview-caption">Representative UI with placeholder values — actual deployment runs on internal production data and is not publicly accessible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case reveal" id="factory-production-log-automation-app">
+      <div class="case-left">
+        <div class="case-index">02 / Industrial Data Systems</div>
+        <div class="case-status">Live</div>
+        <div class="case-name">Factory Production Log Automation App</div>
+        <div class="case-tags"><span class="tag">Data Digitization</span><span class="tag">Validation</span><span class="tag">Structured Storage</span></div>
+      </div>
+      <div class="case-right">
+        <div class="case-block"><div class="case-block-label">Problem</div><p>Daily manufacturing production records were kept on paper and transcribed manually into spreadsheets, a workflow prone to transcription errors and with no consistent structure across dates or shifts.</p></div>
+        <div class="case-block"><div class="case-block-label">Approach</div><p>Digitized the intake process behind a structured entry interface with built-in validation: required-field checks, format enforcement, and normalization rules that catch common transcription inconsistencies before they reach storage. The underlying data model is standardized so every record follows the same schema regardless of shift or section, and the transformation into a consistent, report-ready output is fully automated from there.</p></div>
+        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>A single, standardized data structure now covers every production record, cutting transcription errors at the point of entry and giving downstream reporting a reliable source to work from.</p></div>
+        <button class="preview-toggle" data-label="View entry form" onclick="togglePreview(this,'p-factorylog')"><span class="chev">▸</span> View entry form</button>
+        <div class="preview-panel" id="p-factorylog">
+          <div class="preview-inner">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="700" height="300" fill="var(--panel-2)"/>
+              <rect x="0" y="0" width="700" height="40" fill="var(--panel)"/>
+              <circle cx="24" cy="20" r="4" fill="var(--lime)"/>
+              <text x="40" y="25" font-family="JetBrains Mono" font-size="12" fill="var(--text)">Production Log — entry form</text>
+              <text x="24" y="72" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">SECTION</text>
+              <rect x="24" y="80" width="140" height="30" rx="5" fill="var(--panel)" stroke="var(--line)"/>
+              <text x="34" y="99" font-family="JetBrains Mono" font-size="11" fill="var(--dim)">Section — XXX</text>
+              <text x="184" y="72" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">SHIFT</text>
+              <rect x="184" y="80" width="90" height="30" rx="5" fill="var(--panel)" stroke="var(--line)"/>
+              <text x="194" y="99" font-family="JetBrains Mono" font-size="11" fill="var(--dim)">A</text>
+              <text x="294" y="72" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">DATE</text>
+              <rect x="294" y="80" width="140" height="30" rx="5" fill="var(--panel)" stroke="var(--line)"/>
+              <text x="304" y="99" font-family="JetBrains Mono" font-size="11" fill="var(--dim)">XX / XX / XXXX</text>
+              <line x1="20" y1="128" x2="680" y2="128" stroke="var(--line)"/>
+              <g font-family="JetBrains Mono" font-size="10" fill="var(--faint)">
+                <text x="24" y="150">FIELD</text><text x="240" y="150">VALUE</text><text x="440" y="150">VALIDATION</text>
+              </g>
+              <g font-family="JetBrains Mono" font-size="11" fill="var(--dim)">
+                <text x="24" y="178">Output — Line 1</text><text x="240" y="178">XXXX</text>
+                <circle cx="450" cy="173" r="6" fill="var(--lime-dim)"/><text x="462" y="178" fill="var(--lime)">valid</text>
+                <text x="24" y="206">Output — Line 2</text><text x="240" y="206">XXXX</text>
+                <circle cx="450" cy="201" r="6" fill="var(--lime-dim)"/><text x="462" y="206" fill="var(--lime)">valid</text>
+                <text x="24" y="234">Wastage — category</text><text x="240" y="234">—</text>
+                <circle cx="450" cy="229" r="6" fill="var(--orange-dim)"/><text x="462" y="234" fill="var(--orange)">missing</text>
+              </g>
+              <line x1="20" y1="254" x2="680" y2="254" stroke="var(--line)"/>
+              <rect x="560" y="266" width="120" height="26" rx="5" fill="var(--lime)"/>
+              <text x="580" y="283" font-family="JetBrains Mono" font-size="11" fill="#0A0F02" font-weight="700">Save entry</text>
+            </svg>
+            <p class="preview-caption">Representative UI with placeholder values — actual deployment runs on internal production data and is not publicly accessible.</p>
+          </div>
+        </div>
+        <button class="preview-toggle" data-label="View dashboard" onclick="togglePreview(this,'p-factorydash')"><span class="chev">▸</span> View dashboard</button>
+        <div class="preview-panel" id="p-factorydash">
+          <div class="preview-inner">
+            <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg">
+              <rect width="700" height="340" fill="var(--panel-2)"/>
+              <rect x="0" y="0" width="700" height="40" fill="var(--panel)"/>
+              <circle cx="24" cy="20" r="4" fill="var(--lime)"/>
+              <text x="40" y="25" font-family="JetBrains Mono" font-size="12" fill="var(--text)">Production Dashboard — live overview</text>
+              <text x="600" y="25" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">XX:XX</text>
+              <g font-family="JetBrains Mono" font-size="9" fill="var(--faint)">
+                <rect x="20" y="54" width="100" height="44" rx="5" fill="var(--panel)" stroke="var(--line)"/>
+                <text x="30" y="70">TOTAL OUTPUT</text><text x="30" y="88" fill="var(--text)" font-size="13">XXX</text>
+                <rect x="128" y="54" width="100" height="44" rx="5" fill="var(--panel)" stroke="var(--line)"/>
+                <text x="138" y="70">WASTE %</text><text x="138" y="88" fill="var(--text)" font-size="13">X.X%</text>
+                <rect x="236" y="54" width="100" height="44" rx="5" fill="var(--panel)" stroke="var(--line)"/>
+                <text x="246" y="70">SECTIONS</text><text x="246" y="88" fill="var(--text)" font-size="13">XX</text>
+                <rect x="344" y="54" width="100" height="44" rx="5" fill="var(--panel)" stroke="var(--line)"/>
+                <text x="354" y="70">RECORDS TODAY</text><text x="354" y="88" fill="var(--text)" font-size="13">XXX</text>
+              </g>
+              <text x="20" y="126" font-family="JetBrains Mono" font-size="10.5" fill="var(--dim)">Output by Section</text>
+              <g>
+                <rect x="24" y="136" width="16" height="52" fill="var(--lime)"/>
+                <rect x="48" y="150" width="16" height="38" fill="var(--lime)" opacity=".85"/>
+                <rect x="72" y="142" width="16" height="46" fill="var(--lime)" opacity=".7"/>
+                <rect x="96" y="160" width="16" height="28" fill="var(--lime)" opacity=".55"/>
+                <rect x="120" y="168" width="16" height="20" fill="var(--lime)" opacity=".4"/>
+                <rect x="144" y="176" width="16" height="12" fill="var(--lime)" opacity=".3"/>
+              </g>
+              <text x="420" y="126" font-family="JetBrains Mono" font-size="10.5" fill="var(--dim)">Waste Breakdown</text>
+              <circle cx="470" cy="162" r="34" fill="none" stroke="var(--line)" stroke-width="14"/>
+              <circle cx="470" cy="162" r="34" fill="none" stroke="var(--lime)" stroke-width="14" stroke-dasharray="60 155" stroke-dashoffset="0"/>
+              <circle cx="470" cy="162" r="34" fill="none" stroke="var(--orange)" stroke-width="14" stroke-dasharray="35 155" stroke-dashoffset="-60"/>
+              <line x1="20" y1="206" x2="680" y2="206" stroke="var(--line)"/>
+              <text x="20" y="230" font-family="JetBrains Mono" font-size="10.5" fill="var(--dim)">Downtime by Section &amp; Reason</text>
+              <g>
+                <rect x="24" y="240" width="60" height="10" fill="var(--lime)"/>
+                <rect x="86" y="240" width="30" height="10" fill="var(--orange)"/>
+                <rect x="24" y="256" width="40" height="10" fill="var(--lime)" opacity=".7"/>
+                <rect x="66" y="256" width="70" height="10" fill="var(--orange)" opacity=".7"/>
+                <rect x="24" y="272" width="90" height="10" fill="var(--lime)" opacity=".5"/>
+                <rect x="116" y="272" width="20" height="10" fill="var(--orange)" opacity=".5"/>
+              </g>
+              <line x1="20" y1="300" x2="680" y2="300" stroke="var(--line)"/>
+              <rect x="530" y="312" width="150" height="24" rx="5" fill="var(--panel)" stroke="var(--line)"/>
+              <text x="544" y="328" font-family="JetBrains Mono" font-size="10" fill="var(--lime)">Export report →</text>
+            </svg>
+            <p class="preview-caption">Representative UI with placeholder values — actual deployment runs on internal production data and is not publicly accessible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case reveal" id="hbtrace">
+      <div class="case-left">
+        <div class="case-index">03 / Traceability</div>
+        <div class="case-status">Live</div>
+        <div class="case-name">HBTrace</div>
+        <div class="case-tags"><span class="tag">Structured Logging</span><span class="tag">Geolocation</span><span class="tag">Distance Validation</span><span class="tag">Event Data</span></div>
+      </div>
+      <div class="case-right">
+        <div class="case-block"><div class="case-block-label">Problem</div><p>Field-level operational events had no structured record — activity was reported informally, which made it slow to verify and effectively impossible to audit after the fact.</p></div>
+        <div class="case-block"><div class="case-block-label">Approach</div><p>Built a structured event-logging pipeline around browser-based geolocation capture: each field submission records a coordinate pair, a timestamp, and a GPS accuracy radius, then checks that coordinate against an expected reference point using great-circle distance calculation. A configurable tolerance radius determines whether a submission is verified or flagged, and every entry — verified or not — persists to a queryable, time-series log built to hold up under continuous field activity.</p></div>
+        <div class="how-steps">
+          <div class="how-step"><span class="how-num">01</span>Capture — device geolocation, accuracy radius & timestamp</div>
+          <div class="how-step"><span class="how-num">02</span>Compare — distance vs. expected reference point</div>
+          <div class="how-step"><span class="how-num">03</span>Flag — outside tolerance → marked for review</div>
+          <div class="how-step"><span class="how-num">04</span>Log — every submission persisted, queryable</div>
+        </div>
+        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>Every field event is now traceable and independently verifiable, replacing an informal, unauditable process with a structured one.</p></div>
+        <button class="preview-toggle" data-label="View interface" onclick="togglePreview(this,'p-hbtrace')"><span class="chev">▸</span> View interface</button>
+        <div class="preview-panel" id="p-hbtrace">
+          <div class="preview-inner">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="700" height="300" fill="var(--panel-2)"/>
+              <rect x="0" y="0" width="700" height="40" fill="var(--panel)"/>
+              <circle cx="24" cy="20" r="4" fill="var(--lime)"/>
+              <text x="40" y="25" font-family="JetBrains Mono" font-size="12" fill="var(--text)">Field check-in — coordinate capture</text>
+              <rect x="24" y="54" width="330" height="170" rx="6" fill="var(--panel)" stroke="var(--line)"/>
+              <line x1="24" y1="94" x2="354" y2="94" stroke="var(--line-soft)"/>
+              <line x1="24" y1="134" x2="354" y2="134" stroke="var(--line-soft)"/>
+              <line x1="24" y1="174" x2="354" y2="174" stroke="var(--line-soft)"/>
+              <line x1="114" y1="54" x2="114" y2="224" stroke="var(--line-soft)"/>
+              <line x1="204" y1="54" x2="204" y2="224" stroke="var(--line-soft)"/>
+              <line x1="294" y1="54" x2="294" y2="224" stroke="var(--line-soft)"/>
+              <circle cx="204" cy="134" r="26" fill="none" stroke="var(--lime)" stroke-width="1.4" stroke-dasharray="3 3"/>
+              <circle cx="204" cy="134" r="5" fill="var(--lime)"/>
+              <circle cx="216" cy="122" r="5" fill="var(--orange)"/>
+              <line x1="204" y1="134" x2="216" y2="122" stroke="var(--faint)" stroke-width="1"/>
+              <text x="34" y="70" font-family="JetBrains Mono" font-size="9.5" fill="var(--faint)">reference point</text>
+              <text x="222" y="118" font-family="JetBrains Mono" font-size="9.5" fill="var(--orange)">submitted</text>
+              <g font-family="JetBrains Mono" font-size="10" fill="var(--faint)">
+                <text x="374" y="72">LAT</text><text x="374" y="98" fill="var(--dim)" font-size="11">XX.XXXXX</text>
+                <text x="374" y="122">LON</text><text x="374" y="148" fill="var(--dim)" font-size="11">XX.XXXXX</text>
+                <text x="374" y="172">ACCURACY</text><text x="374" y="198" fill="var(--dim)" font-size="11">± XXm</text>
+              </g>
+              <g font-family="JetBrains Mono" font-size="10" fill="var(--faint)">
+                <text x="500" y="72">DISTANCE</text><text x="500" y="98" fill="var(--lime)" font-size="11">XXm</text>
+                <text x="500" y="122">TOLERANCE</text><text x="500" y="148" fill="var(--dim)" font-size="11">XXXm</text>
+                <text x="500" y="172">RESULT</text>
+                <rect x="500" y="180" width="76" height="20" rx="10" fill="var(--lime-dim)"/><text x="514" y="194" fill="var(--lime)" font-size="10">VERIFIED</text>
+              </g>
+              <line x1="20" y1="240" x2="680" y2="240" stroke="var(--line)"/>
+              <text x="24" y="264" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">log entry saved · timestamp XX:XX</text>
+            </svg>
+            <p class="preview-caption">Representative UI with placeholder values — actual deployment runs on internal production data and is not publicly accessible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="case reveal" id="hbtrail">
       <div class="case-left">
-        <div class="case-index">01 / Field Ops</div>
+        <div class="case-index">04 / Compliance</div>
         <div class="case-status">Live</div>
         <div class="case-name">HBTrail</div>
-        <div class="case-tags"><span class="tag">GPS</span><span class="tag">Field Verification</span><span class="tag">Streamlit</span></div>
+        <div class="case-tags"><span class="tag">Audit Trail</span><span class="tag">Immutable Logging</span><span class="tag">Compliance Reporting</span></div>
       </div>
       <div class="case-right">
-        <div class="case-block"><div class="case-block-label">Problem</div><p>Field officer attendance across 10 regions was verified by manual phone calls — slow, unreliable, and impossible to audit after the fact.</p></div>
-        <div class="case-block"><div class="case-block-label">Approach</div><p>Built a GPS check-in system that matches field pings against expected location and time with a ±20-minute tolerance window, then cross-checks the result against a 12-tier org hierarchy so no submission can bypass its actual reporting chain.</p></div>
-        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>Targets full rollout across all 10 regions, replacing phone-call verification entirely.</p></div>
-      </div>
-    </div>
-
-    <div class="case reveal" id="gptracker">
-      <div class="case-left">
-        <div class="case-index">02 / Reporting</div>
-        <div class="case-status">Live</div>
-        <div class="case-name">GP Tracker Watcher</div>
-        <div class="case-tags"><span class="tag">Python</span><span class="tag">File Watcher</span><span class="tag">Automation</span></div>
-      </div>
-      <div class="case-right">
-        <div class="case-block"><div class="case-block-label">Problem</div><p>Daily attendance reports were compiled by hand from raw tracker exports — roughly 3 hours of repetitive spreadsheet work, every single day.</p></div>
-        <div class="case-block"><div class="case-block-label">Approach</div><p>Wrote <code style="font-family:var(--mono);color:var(--text);">gp_auto_watcher.py</code>, a folder-watch service that picks up new exports automatically, fixed a font-bleed rendering bug in the generated PDFs, and tuned the matching tolerance window until edge cases stopped producing false flags.</p></div>
-        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>Report generation time went from ~3 hours to under 1 minute, running unattended every day.</p></div>
-      </div>
-    </div>
-
-    <div class="case reveal" id="formation001r">
-      <div class="case-left">
-        <div class="case-index">03 / PDF Generation</div>
-        <div class="case-status">Live</div>
-        <div class="case-name">Officer Tracking Reports (Formation-001R)</div>
-        <div class="case-tags"><span class="tag">WeasyPrint</span><span class="tag">PDF</span><span class="tag">Bengali Typography</span></div>
-      </div>
-      <div class="case-right">
-        <div class="case-block"><div class="case-block-label">Problem</div><p>Officer tracking reports across 5 zones needed consistent, print-ready PDF formatting — including correctly rendered Bengali text — generated fresh every run instead of copy-pasted from old templates.</p></div>
-        <div class="case-block"><div class="case-block-label">Approach</div><p>Built the report generator on WeasyPrint with Noto Sans Bengali embedded for correct glyph rendering, templating each of the 5 zone layouts so formatting never has to be touched by hand.</p></div>
-        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>Zero manual formatting per run — every report comes out correctly typeset, every time.</p></div>
-      </div>
-    </div>
-
-    <div class="case reveal" id="formation002s">
-      <div class="case-left">
-        <div class="case-index">04 / Data Digitization</div>
-        <div class="case-status">Live</div>
-        <div class="case-name">Production Log Digitization (Formation-002S)</div>
-        <div class="case-tags"><span class="tag">Excel</span><span class="tag">Data Entry</span><span class="tag">openpyxl</span></div>
-      </div>
-      <div class="case-right">
-        <div class="case-block"><div class="case-block-label">Problem</div><p>Handwritten factory production logs — Making, Duplex, HLP 10's & 20's, split across Shift A/B — had to be manually transcribed into Excel, with inconsistent handwriting (name spelling variants, ditto marks) causing regular data errors.</p></div>
-        <div class="case-block"><div class="case-block-label">Approach</div><p>Locked a standard workbook structure spanning every machine block and shift, and encoded the transcription rules directly into the process: name variants normalized automatically, and ditto marks (") resolved against the nearest labeled unit above rather than treated as literal text.</p></div>
-        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>One consistent template structure now used for every production date, cutting transcription errors at the source.</p></div>
-      </div>
-    </div>
-
-    <div class="case reveal" id="masterhier">
-      <div class="case-left">
-        <div class="case-index">05 / Data Consolidation</div>
-        <div class="case-status">Live</div>
-        <div class="case-name">Master Hierarchy & SIM Registry</div>
-        <div class="case-tags"><span class="tag">Excel</span><span class="tag">Data Reconciliation</span></div>
-      </div>
-      <div class="case-right">
-        <div class="case-block"><div class="case-block-label">Problem</div><p>Officer records — designation, territory, corporate & personal numbers — lived across 8 separate regional files with no way to catch duplicates, conflicts, or missing data.</p></div>
-        <div class="case-block"><div class="case-block-label">Approach</div><p>Consolidated all 8 sources into a single <code style="font-family:var(--mono);color:var(--text);">Master_Trace.xlsx</code>, then built an automated 5-sheet comparison workbook — Matched, Only in Master, Only in Trace, and No Corporate Number — to surface every mismatch without manual cross-referencing.</p></div>
-        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>A single verified source of truth, with data conflicts surfaced automatically instead of discovered by accident.</p></div>
+        <div class="case-block"><div class="case-block-label">Problem</div><p>There was no reliable historical record of state changes across internal processes, which made compliance review slow and left gaps in accountability whenever a record was questioned.</p></div>
+        <div class="case-block"><div class="case-block-label">Approach</div><p>Built an append-only audit trail framework: every state transition is written once with a timestamp and origin, and existing entries are never edited or overwritten — new state is always recorded as a new entry, never a mutation of the old one. That write-once pattern keeps the historical record immutable by design, and compliance-ready documentation generates directly from the trail on demand.</p></div>
+        <div class="case-block outcome"><div class="case-block-label">Outcome</div><p>A complete, tamper-resistant historical record is now available for every process it covers, cutting the time required for internal compliance review.</p></div>
+        <button class="preview-toggle" data-label="View interface" onclick="togglePreview(this,'p-hbtrail')"><span class="chev">▸</span> View interface</button>
+        <div class="preview-panel" id="p-hbtrail">
+          <div class="preview-inner">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="700" height="300" fill="var(--panel-2)"/>
+              <rect x="0" y="0" width="700" height="40" fill="var(--panel)"/>
+              <circle cx="24" cy="20" r="4" fill="var(--lime)"/>
+              <text x="40" y="25" font-family="JetBrains Mono" font-size="12" fill="var(--text)">Audit trail — append-only log</text>
+              <text x="600" y="25" font-family="JetBrains Mono" font-size="10" fill="var(--faint)">🔒 immutable</text>
+              <line x1="60" y1="60" x2="60" y2="250" stroke="var(--line)" stroke-width="1.4"/>
+              <g font-family="JetBrains Mono" font-size="10.5" fill="var(--dim)">
+                <circle cx="60" cy="76" r="5" fill="var(--lime)"/>
+                <text x="80" y="80">XX:XX — state changed to XXX</text><text x="560" y="80" fill="var(--faint)">origin: XXX</text>
+                <circle cx="60" cy="116" r="5" fill="var(--lime)"/>
+                <text x="80" y="120">XX:XX — record created</text><text x="560" y="120" fill="var(--faint)">origin: XXX</text>
+                <circle cx="60" cy="156" r="5" fill="var(--lime)"/>
+                <text x="80" y="160">XX:XX — state changed to XXX</text><text x="560" y="160" fill="var(--faint)">origin: XXX</text>
+                <circle cx="60" cy="196" r="5" fill="var(--lime)"/>
+                <text x="80" y="200">XX:XX — reviewed &amp; confirmed</text><text x="560" y="200" fill="var(--faint)">origin: XXX</text>
+                <circle cx="60" cy="236" r="5" fill="var(--faint)" opacity="0.5"/>
+                <text x="80" y="240" fill="var(--faint)">… full history preserved, write-once</text>
+              </g>
+              <rect x="500" y="252" width="180" height="30" rx="6" fill="var(--panel)" stroke="var(--line)"/>
+              <text x="514" y="271" font-family="JetBrains Mono" font-size="10.5" fill="var(--lime)">Export compliance report →</text>
+            </svg>
+            <p class="preview-caption">Representative UI with placeholder values — actual deployment runs on internal production data and is not publicly accessible.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -338,7 +538,7 @@ a:focus-visible,.btn:focus-visible,.clink:focus-visible,.nav-cta:focus-visible{o
       <div class="stack-cell"><h4>Core</h4><ul><li>Python</li><li>SQL</li><li>Data structures</li></ul></div>
       <div class="stack-cell"><h4>Automation & data</h4><ul><li>Pandas / openpyxl</li><li>WeasyPrint</li><li>File-watch services</li></ul></div>
       <div class="stack-cell"><h4>Interfaces</h4><ul><li>Streamlit</li><li>Windows services</li><li>Operational dashboards</li></ul></div>
-      <div class="stack-cell"><h4>Working style</h4><ul><li>LLM-assisted workflows</li><li>Fast idea-to-production cycles</li><li>Documentation-first builds</li></ul></div>
+      <div class="stack-cell"><h4>Working style</h4><ul><li>Fast idea-to-production cycles</li><li>Documentation-first builds</li><li>Iterative, feedback-driven delivery</li></ul></div>
     </div>
   </div>
 </section>
@@ -385,6 +585,16 @@ if(glow){
   window.addEventListener('mouseleave', ()=>{glow.style.opacity='0';});
 }
 
+/* interface preview toggle */
+function togglePreview(btn,id){
+  const panel=document.getElementById(id);
+  if(!panel) return;
+  const isOpen=panel.classList.toggle('open');
+  btn.classList.toggle('open',isOpen);
+  const label=btn.dataset.label||'View interface';
+  btn.lastChild.textContent=' '+(isOpen?'Hide interface':label);
+}
+
 /* reveal on scroll */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
@@ -427,11 +637,10 @@ animateDots();
 
 /* terminal simulation */
 const projectsData=[
-  {id:'hbtrail',name:'HBTrail',tag:'GPS field-attendance tracking',result:'targets full rollout across 10 regions'},
-  {id:'gptracker',name:'GP Tracker Watcher',tag:'zero-touch attendance reports',result:'3hrs → under 1 minute, daily'},
-  {id:'formation001r',name:'Officer Tracking Reports (Formation-001R)',tag:'auto-generated PDF reports, 5 zones',result:'zero manual formatting per run'},
-  {id:'formation002s',name:'Production Log Digitization (Formation-002S)',tag:'handwritten logs → structured Excel',result:'one locked template, every date'},
-  {id:'masterhier',name:'Master Hierarchy & SIM Registry',tag:'8 regional files → 1 master source',result:'conflicts surfaced automatically'}
+  {id:'gp-tracker-report-automation',name:'GP Tracker Report Automation',tag:'scheduled reporting pipeline',result:'hours → minutes, unattended daily'},
+  {id:'factory-production-log-automation-app',name:'Factory Production Log Automation App',tag:'digitized production records',result:'one standardized data structure'},
+  {id:'hbtrace',name:'HBTrace',tag:'structured field event logging',result:'every event traceable and auditable'},
+  {id:'hbtrail',name:'HBTrail',tag:'immutable audit trail framework',result:'compliance-ready records on demand'}
 ];
 
 const termBody=document.getElementById('termBody');
@@ -443,12 +652,12 @@ if(termBody){
   const bootScripts={
     default:[
       {t:'$ python watch_folder.py',cls:'term-prompt'},
-      {t:'> watching: Incoming/',cls:'term-out'},
-      {t:'> new file: Jamiluddin_06-08-2026.xlsx',cls:'term-out'},
-      {t:'> matching pings (±20min tolerance) ...',cls:'term-out'},
-      {t:'> cross-checking 12-tier hierarchy ...',cls:'term-out'},
-      {t:'> flagged: 3 out-of-zone, 1 ghost ping',cls:'term-warn'},
-      {t:'✓ report generated in 0.9s (manual: ~3hrs)',cls:'term-ok'},
+      {t:'> watching: incoming exports/',cls:'term-out'},
+      {t:'> new file detected, ingesting ...',cls:'term-out'},
+      {t:'> capturing coordinate + accuracy + timestamp ...',cls:'term-out'},
+      {t:'> distance vs. reference point: within tolerance',cls:'term-out'},
+      {t:'> flagged: 4 records need review',cls:'term-warn'},
+      {t:'✓ report generated in 0.9s (manual: several hours)',cls:'term-ok'},
       {t:"type 'help' to explore",cls:'term-out'}
     ]
   };
@@ -470,7 +679,7 @@ if(termBody){
     help:()=>{printLine('available commands:','term-ok');['whoami','projects','skills','contact','open <project>','clear'].forEach(c=>printLine('  '+c));},
     whoami:()=>{printLine('Md Hammad Ullah Fayed','term-ok');printLine('Automation Engineer — Dhaka, Bangladesh');},
     projects:()=>{projectsData.forEach(p=>printLine(`${p.id.padEnd(16)} — ${p.tag}`));},
-    skills:()=>printLine('Python · SQL · Pandas · openpyxl · WeasyPrint · Streamlit · LLM-assisted workflows'),
+    skills:()=>printLine('Python · SQL · Pandas · openpyxl · WeasyPrint · Streamlit · Automation architecture'),
     contact:()=>{printLine('email: hufayed19@gmail.com','term-ok');printLine('github: github.com/Fayed038');printLine('linkedin: /in/md-hammad-ullah-fayed-251744271');},
     clear:()=>{termBody.innerHTML='';}
   };

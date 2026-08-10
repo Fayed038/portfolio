@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fayed — Automation Engineer</title>
 <meta name="description" content="Md Hammad Ullah Fayed — Automation Engineer building production pipelines that replace manual operations work.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Md Hammad Ullah Fayed — Automation Engineer">
+<meta property="og:description" content="Building the automation layer between messy field operations and clean, trustworthy reports.">
+<meta property="og:image" content="https://fayed038.github.io/og-cover.png">
+<meta property="og:url" content="https://fayed038.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Md Hammad Ullah Fayed — Automation Engineer">
+<meta name="twitter:description" content="Building the automation layer between messy field operations and clean, trustworthy reports.">
+<meta name="twitter:image" content="https://fayed038.github.io/og-cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -302,30 +311,30 @@ a:focus-visible,.btn:focus-visible,.clink:focus-visible,.nav-cta:focus-visible{o
   <div class="wrap">
     <div class="section-head reveal">
       <div class="kicker">Selected work</div>
-      <h2 class="section-title">Three pipelines, doing the job people used to do by hand.</h2>
-      <p class="section-sub">Five case studies live on the Work page — problem, approach, outcome for each. Here's a preview.</p>
+      <h2 class="section-title">Systems that do the job people used to do by hand.</h2>
+      <p class="section-sub">Full case studies live on the Work page — problem, approach, outcome for each. Here's a preview.</p>
     </div>
     <div class="work-preview-grid reveal">
-      <a href="work.html#hbtrail" class="wp-cell">
-        <div class="wp-index">01 / Field Ops</div>
-        <div class="wp-name">HBTrail</div>
-        <div class="wp-tag">GPS field-attendance tracking, replacing manual phone-call verification across 10 regions</div>
-        <div class="wp-metric">→ ±20min tolerance matching</div>
+      <a href="work.html#gp-tracker-report-automation" class="wp-cell">
+        <div class="wp-index">01 / Reporting</div>
+        <div class="wp-name">GP Tracker Report Automation</div>
+        <div class="wp-tag">Scheduled reporting pipeline that aggregates and validates raw exports automatically</div>
+        <div class="wp-metric">→ hours → minutes, daily</div>
       </a>
-      <a href="work.html#gptracker" class="wp-cell">
-        <div class="wp-index">02 / Reporting</div>
-        <div class="wp-name">GP Tracker Watcher</div>
-        <div class="wp-tag">Zero-touch attendance reports generated from a live-watched folder</div>
-        <div class="wp-metric">→ 3hrs → under 1 minute</div>
+      <a href="work.html#factory-production-log-automation-app" class="wp-cell">
+        <div class="wp-index">02 / Industrial Data Systems</div>
+        <div class="wp-name">Factory Production Log Automation App</div>
+        <div class="wp-tag">Digitized manual production records into one standardized, validated data structure</div>
+        <div class="wp-metric">→ errors cut at the source</div>
       </a>
-      <a href="work.html#formation002s" class="wp-cell">
-        <div class="wp-index">04 / Data Digitization</div>
-        <div class="wp-name">Formation-002S</div>
-        <div class="wp-tag">Handwritten factory production logs converted into one locked Excel template</div>
-        <div class="wp-metric">→ ditto-mark & name normalization</div>
+      <a href="work.html#hbtrace" class="wp-cell">
+        <div class="wp-index">03 / Traceability</div>
+        <div class="wp-name">HBTrace</div>
+        <div class="wp-tag">Structured event logging for high-throughput field data, built for full auditability</div>
+        <div class="wp-metric">→ every event traceable</div>
       </a>
     </div>
-    <a href="work.html" class="btn btn-ghost work-more">See all 5 case studies →</a>
+    <a href="work.html" class="btn btn-ghost work-more">See all case studies →</a>
   </div>
 </section>
 
@@ -413,11 +422,10 @@ animateDots();
 
 /* terminal simulation */
 const projectsData=[
-  {id:'hbtrail',name:'HBTrail',tag:'GPS field-attendance tracking',result:'targets full rollout across 10 regions'},
-  {id:'gptracker',name:'GP Tracker Watcher',tag:'zero-touch attendance reports',result:'3hrs → under 1 minute, daily'},
-  {id:'formation001r',name:'Officer Tracking Reports (Formation-001R)',tag:'auto-generated PDF reports, 5 zones',result:'zero manual formatting per run'},
-  {id:'formation002s',name:'Production Log Digitization (Formation-002S)',tag:'handwritten logs → structured Excel',result:'one locked template, every date'},
-  {id:'masterhier',name:'Master Hierarchy & SIM Registry',tag:'8 regional files → 1 master source',result:'conflicts surfaced automatically'}
+  {id:'gp-tracker-report-automation',name:'GP Tracker Report Automation',tag:'scheduled reporting pipeline',result:'hours â minutes, unattended daily'},
+  {id:'factory-production-log-automation-app',name:'Factory Production Log Automation App',tag:'digitized production records',result:'one standardized data structure'},
+  {id:'hbtrace',name:'HBTrace',tag:'structured field event logging',result:'every event traceable and auditable'},
+  {id:'hbtrail',name:'HBTrail',tag:'immutable audit trail framework',result:'compliance-ready records on demand'}
 ];
 
 const termBody=document.getElementById('termBody');
@@ -456,7 +464,7 @@ if(termBody){
     help:()=>{printLine('available commands:','term-ok');['whoami','projects','skills','contact','open <project>','clear'].forEach(c=>printLine('  '+c));},
     whoami:()=>{printLine('Md Hammad Ullah Fayed','term-ok');printLine('Automation Engineer — Dhaka, Bangladesh');},
     projects:()=>{projectsData.forEach(p=>printLine(`${p.id.padEnd(16)} — ${p.tag}`));},
-    skills:()=>printLine('Python · SQL · Pandas · openpyxl · WeasyPrint · Streamlit · LLM-assisted workflows'),
+    skills:()=>printLine('Python · SQL · Pandas · openpyxl · WeasyPrint · Streamlit · Automation architecture'),
     contact:()=>{printLine('email: hufayed19@gmail.com','term-ok');printLine('github: github.com/Fayed038');printLine('linkedin: /in/md-hammad-ullah-fayed-251744271');},
     clear:()=>{termBody.innerHTML='';}
   };
