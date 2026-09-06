@@ -265,20 +265,23 @@ a:focus-visible,.btn:focus-visible,.clink:focus-visible,.nav-cta:focus-visible{o
       </div>
 
       <form class="contact-form" id="contactForm">
+        <input type="hidden" name="access_key" value="ae06e7ed-852a-47bb-bbb9-d8018a00f193">
+        <input type="hidden" name="subject" value="New message from portfolio contact form">
+        <input type="checkbox" name="botcheck" style="display:none">
         <div class="cf-row">
           <label for="cfName">Name</label>
-          <input type="text" id="cfName" required placeholder="Your name">
+          <input type="text" id="cfName" name="name" required placeholder="Your name">
         </div>
         <div class="cf-row">
           <label for="cfEmail">Email</label>
-          <input type="email" id="cfEmail" required placeholder="you@company.com">
+          <input type="email" id="cfEmail" name="email" required placeholder="you@company.com">
         </div>
         <div class="cf-row">
           <label for="cfMsg">What's the process?</label>
-          <textarea id="cfMsg" required placeholder="Tell me what's still manual — I'll tell you if it's automatable."></textarea>
+          <textarea id="cfMsg" name="message" required placeholder="Tell me what's still manual — I'll tell you if it's automatable."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary cf-submit">Send message →</button>
-        <p class="cf-note">Opens your email app with this pre-filled — this is a static site, no server behind it.</p>
+        <button type="submit" class="btn btn-primary cf-submit" id="cfSubmitBtn">Send message →</button>
+        <p class="cf-note" id="cfNote">Sends directly to my inbox — no email app needed.</p>
       </form>
     </div>
   </div>
@@ -493,17 +496,35 @@ function copyEmail(){
   });
 }
 
-/* contact form -> mailto fallback (static site, no backend) */
+/* contact form -> Web3Forms (no backend needed, submits straight to inbox) */
 const cform=document.getElementById('contactForm');
 if(cform){
-  cform.addEventListener('submit', e=>{
+  const cfNote=document.getElementById('cfNote');
+  const cfBtn=document.getElementById('cfSubmitBtn');
+  cform.addEventListener('submit', async e=>{
     e.preventDefault();
-    const name=document.getElementById('cfName').value.trim();
-    const email=document.getElementById('cfEmail').value.trim();
-    const msg=document.getElementById('cfMsg').value.trim();
-    const subject=encodeURIComponent('Portfolio contact — '+name);
-    const body=encodeURIComponent(msg+'\n\n— '+name+' ('+email+')');
-    window.location.href=`mailto:hufayed19@gmail.com?subject=${subject}&body=${body}`;
+    cfBtn.disabled=true;
+    cfBtn.textContent='Sending...';
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify(Object.fromEntries(new FormData(cform)))
+      });
+      const data=await res.json();
+      if(data.success){
+        cform.reset();
+        cfBtn.textContent='Send message →';
+        cfNote.textContent='Sent — thanks, I\'ll get back to you soon.';
+      } else {
+        throw new Error(data.message||'submit failed');
+      }
+    } catch(err){
+      cfBtn.textContent='Send message →';
+      cfNote.textContent='Something went wrong — email me directly at hufayed19@gmail.com.';
+    } finally {
+      cfBtn.disabled=false;
+    }
   });
 }
 
