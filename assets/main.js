@@ -262,3 +262,81 @@ if (cv) {
   requestAnimationFrame(draw);
 }
 })();
+
+/* ===== v3: boot, tilt, command palette ===== */
+(() => {
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const boot = $('.boot');
+if (boot) {
+  const lines = JSON.parse(boot.dataset.lines); boot.innerHTML = '';
+  let li = 0;
+  const next = () => {
+    if (li >= lines.length) return;
+    const d = document.createElement('div'); boot.append(d);
+    const [t, ok] = lines[li++]; let c = 0;
+    const type = () => {
+      d.textContent = t.slice(0, ++c);
+      if (c < t.length) setTimeout(type, reduce ? 0 : 14);
+      else { if (ok) d.insertAdjacentHTML('beforeend', ` <span class="ok">${ok}</span>`); setTimeout(next, reduce ? 0 : 160); }
+    };
+    type();
+  };
+  const go = () => setTimeout(next, 500);
+  document.body.classList.contains('ready') ? go() : new MutationObserver((m, o) => { if (document.body.classList.contains('ready')) { o.disconnect(); go(); } }).observe(document.body, { attributes: true });
+}
+
+const frames = $$('.frame');
+if (frames.length && !reduce) {
+  const t = () => {
+    const vh = innerHeight;
+    frames.forEach(f => {
+      const r = f.getBoundingClientRect(), p = (r.top + r.height / 2 - vh / 2) / vh;
+      f.style.transform = `rotateX(${Math.max(-18, Math.min(18, p * 22))}deg) scale(${1 - Math.min(.08, Math.abs(p) * .08)})`;
+    });
+    requestAnimationFrame(t);
+  };
+  t();
+}
+
+const box = document.createElement('div'); box.className = 'cmdk';
+const items = [
+  ['Pages', 'Index', 'index.html'], ['Pages', 'Work', 'work.html'], ['Pages', 'About', 'about.html'], ['Pages', 'Contact', 'contact.html'],
+  ['Projects', 'GLTC Corporate Website', 'work.html#gltc-website'], ['Projects', 'GLTC Inventory System', 'work.html#gltc-inventory'],
+  ['Projects', 'HBTrace & HBTrail', 'work.html#hbtrace'], ['Projects', 'GP Tracker Auto-Watcher', 'work.html#gp-tracker-report-automation'],
+  ['Projects', 'Factory Production Log App', 'work.html#factory-production-log-automation-app'], ['Projects', 'F.I.D.O. — voice AI', 'work.html#labs'],
+  ['Actions', 'Copy email', 'copy:hufayed19@gmail.com'], ['Actions', 'Visit gltcbd.com', 'https://www.gltcbd.com/'],
+  ['Actions', 'GitHub', 'https://github.com/Fayed038'], ['Actions', 'LinkedIn', 'https://www.linkedin.com/in/md-hammad-ullah-fayed-251744271'],
+];
+box.innerHTML = `<div class="cmdk-box"><input placeholder="Type a command or search…" aria-label="Command palette"><div class="cmdk-list"></div><div class="cmdk-foot"><span>↑↓ navigate</span><span>↵ open</span><span>esc close</span></div></div>`;
+document.body.append(box);
+const inp = $('input', box), list = $('.cmdk-list', box); let sel = 0, shown = [];
+const render = () => {
+  const q = inp.value.toLowerCase();
+  shown = items.filter(i => i[1].toLowerCase().includes(q)); sel = Math.min(sel, Math.max(0, shown.length - 1));
+  let g = '', h = '';
+  shown.forEach((it, k) => { if (it[0] !== g) { g = it[0]; h += `<div class="cmdk-g">${g}</div>`; } h += `<button class="cmdk-i${k === sel ? ' on' : ''}" data-k="${k}">${it[1]}<span>${it[2].startsWith('http') ? '↗' : it[2].startsWith('copy') ? 'copy' : '→'}</span></button>`; });
+  list.innerHTML = h || '<div class="cmdk-g">No results</div>';
+};
+const run = it => {
+  if (!it) return; close();
+  if (it[2].startsWith('copy:')) { navigator.clipboard?.writeText(it[2].slice(5)); const t = $('.toast'); t && (t.classList.add('show'), setTimeout(() => t.classList.remove('show'), 1800)); }
+  else if (it[2].startsWith('http')) open(it[2], '_blank', 'noopener');
+  else location.href = it[2];
+};
+const openP = () => { box.classList.add('open'); inp.value = ''; sel = 0; render(); setTimeout(() => inp.focus(), 20); };
+const close = () => box.classList.remove('open');
+addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); box.classList.contains('open') ? close() : openP(); return; }
+  if (!box.classList.contains('open')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'ArrowDown') { sel = (sel + 1) % shown.length; render(); e.preventDefault(); }
+  if (e.key === 'ArrowUp') { sel = (sel - 1 + shown.length) % shown.length; render(); e.preventDefault(); }
+  if (e.key === 'Enter') run(shown[sel]);
+});
+inp.addEventListener('input', () => { sel = 0; render(); });
+list.addEventListener('click', e => { const b = e.target.closest('[data-k]'); b && run(shown[+b.dataset.k]); });
+box.addEventListener('click', e => { if (e.target === box) close(); });
+$$('[data-cmdk]').forEach(b => b.addEventListener('click', openP));
+})();
