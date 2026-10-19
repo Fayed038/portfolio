@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
-<script>try{if(sessionStorage.getItem('seen'))document.documentElement.classList.add('no-loader')}catch(e){}</script>
+<script>var d=document.documentElement;d.className+=' js';try{if(sessionStorage.getItem('seen'))d.className+=' no-loader'}catch(e){}setTimeout(function(){if(d.className.indexOf('js-ok')<0)d.className+=' reveal-all'},3500)</script>
 </head>
 <body>
 <div class="loader"><div class="loader-count">000</div><div class="mono dim">Fayed — Software Engineer<br>Portfolio ©2026</div><div class="loader-bar"></div></div>
@@ -26,8 +26,13 @@
 <nav class="nav">
   <a href="index.html" class="brand">Fayed<i>,</i> MHU</a>
   <div class="nav-links"><a href="index.html" class="active"><span class="r" data-t="Index">Index</span></a><a href="work.html"><span class="r" data-t="Work">Work</span></a><a href="about.html"><span class="r" data-t="About">About</span></a><a href="contact.html"><span class="r" data-t="Contact">Contact</span></a></div>
+  <button class="menu-btn" aria-label="Open menu" aria-expanded="false">Menu<i></i></button>
   <div class="meta"><button class="kbd" data-cmdk>Ctrl K</button><span data-clock>DHK --:--:--</span><span class="status">Available</span></div>
 </nav>
+<div class="mnav">
+  <a class="big" href="index.html"><span>01</span>Index</a><a class="big" href="work.html"><span>02</span>Work</a><a class="big" href="about.html"><span>03</span>About</a><a class="big" href="contact.html"><span>04</span>Contact</a>
+  <div class="mfoot mono"><a href="mailto:hufayed19@gmail.com">hufayed19@gmail.com</a><span>Dhaka</span></div>
+</div>
 
 <header class="hero">
   <canvas id="terrain" aria-hidden="true"></canvas>
@@ -45,7 +50,7 @@
 
 <section class="statement wrap">
   <div class="mono dim" style="margin-bottom:40px">(01) — Philosophy</div>
-  <p data-words>A company’s public face, its stock records, 245 field officers, a factory floor’s paper logs. I build the software in between — full-stack, end to end, owned in production long after the demo.</p>
+  <p data-words>Websites, platforms, pipelines. I design them, build them, ship them — and keep them running long after launch.</p>
 </section>
 
 <section class="wrap">
