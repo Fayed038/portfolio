@@ -2,3 +2,53 @@ document.documentElement.classList.add("js"),(()=>{const r=(e,t=document)=>t.que
 
 ;(function(){var b=document.getElementById('progress');if(!b)return;var t=false;function u(){var h=document.documentElement.scrollHeight-innerHeight;b.style.transform='scaleX('+(h>0?Math.min(1,pageYOffset/h):0)+')';t=false}addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u)}},{passive:true});u();
 var ms=document.querySelectorAll('.metric');if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.3});for(var i=0;i<ms.length;i++)io.observe(ms[i])}})();
+
+;(function(){
+var D=document;
+/* ---- decode effect on mono labels ---- */
+var CH='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*+=/<>';
+function decode(el){var t=el.getAttribute('data-t');if(!t)return;var n=0,len=t.length,iv=setInterval(function(){var o='';for(var i=0;i<len;i++){o+=i<n||t[i]===' '?t[i]:CH[Math.floor(Math.random()*CH.length)]}el.textContent=o;n+=Math.max(1,len/18);if(n>=len){clearInterval(iv);el.textContent=t}},35)}
+var labs=D.querySelectorAll('.shead .idx,.feat-copy .tag,.phero>.mono,.statement>.mono,.case-side .mono:not(.live)');
+if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){decode(e.target);io.unobserve(e.target)}})},{threshold:.6});
+ for(var i=0;i<labs.length;i++){if(labs[i].children.length)continue;labs[i].setAttribute('data-t',labs[i].textContent);labs[i].classList.add('dec');io.observe(labs[i])}}
+/* ---- spotlight + tilt ---- */
+var fine=matchMedia('(hover:hover)').matches;
+var cards=D.querySelectorAll('.svc-card,.lab,.frame,.term');
+for(var j=0;j<cards.length;j++)(function(c){c.classList.add('spot');var tilt=fine&&!c.classList.contains('frame')&&!c.classList.contains('term');if(tilt)c.classList.add('tilt');
+ c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+  if(tilt){var rx=(y/r.height-.5)*-5,ry=(x/r.width-.5)*6;c.style.transform='perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)'}});
+ c.addEventListener('pointerleave',function(){if(tilt)c.style.transform=''})})(cards[j]);
+/* ---- terminal ---- */
+var out=D.getElementById('termOut'),form=D.getElementById('termForm'),inp=D.getElementById('termIn');if(!out||!form)return;
+var C={
+ help:'<span class="d">available commands</span>\n  <span class="c">about</span>      who I am\n  <span class="c">projects</span>   things I have shipped\n  <span class="c">stack</span>      tools I use\n  <span class="c">services</span>   what I can build for you\n  <span class="c">hire</span>       start a project\n  <span class="c">contact</span>    email, phone, links\n  <span class="c">cv</span>         download my CV\n  <span class="c">play</span>       play my 3D football game\n  <span class="c">clear</span>      clear the screen',
+ about:'Md Hammad Ullah Fayed — software engineer in Dhaka.\nI build websites, business platforms and automation,\nfrom the database to the deployed server.\nCurrently at <span class="b">HB Jamil Group of Industries</span>.',
+ projects:'<span class="c">01</span>  GLTC corporate website        <span class="d">Next.js · live</span>\n<span class="c">02</span>  GLTC inventory system         <span class="d">Node · React · PM2</span>\n<span class="c">03</span>  Key Points… Tea Points!       <span class="d">community cha map · live</span>\n<span class="c">04</span>  HBTrace / HBTrail             <span class="d">245+ field officers</span>\n<span class="c">05</span>  GP tracker auto-watcher       <span class="d">3 hrs → under 1 min</span>\n<span class="c">06</span>  Shonen Strikers               <span class="d">3D game · Three.js</span>\n<span class="d">→ full list: </span><a href="work.html">work.html</a>',
+ stack:'<span class="b">frontend</span>   Next.js · React · Vite · JS\n<span class="b">backend</span>    Node.js · Python · SQL · Firebase\n<span class="b">infra</span>      Linux VPS · PM2 · Vercel · Git\n<span class="b">automation</span> Pandas · Playwright · WeasyPrint\n<span class="b">ai</span>         Whisper · Ollama · LLM tooling',
+ services:'<span class="c">website</span>     company sites that look as serious as you are   <span class="d">2–4 wks</span>\n<span class="c">platform</span>    inventory, orders, tracking — replace the sheets <span class="d">4–8 wks</span>\n<span class="c">automation</span>  reports that build themselves                   <span class="d">1–3 wks</span>\n<span class="d">→ type</span> <span class="c">hire</span>',
+ hire:'<span class="c">✓</span> great. three ways to start:\n  WhatsApp  <a href="https://wa.me/8801340602232" target="_blank">+880 1340-602232</a>\n  email     <a href="mailto:hufayed19@gmail.com">hufayed19@gmail.com</a>\n  form      <a href="contact.html">contact.html</a>\n<span class="d">I usually reply within a day.</span>',
+ contact:'email     <a href="mailto:hufayed19@gmail.com">hufayed19@gmail.com</a>\nphone     <a href="tel:+8801340602232">+880 1340-602232</a>\ngithub    <a href="https://github.com/Fayed038" target="_blank">github.com/Fayed038</a>\nlinkedin  <a href="https://www.linkedin.com/in/md-hammad-ullah-fayed-251744271" target="_blank">md-hammad-ullah-fayed</a>',
+ cv:'opening CV… <a href="assets/Fayed-CV.pdf" target="_blank">Fayed-CV.pdf</a>',
+ play:'launching Shonen Strikers… ⚽ <a href="https://claude.ai/artifact/E4GQVMUGopoiZ4gyMAF4KC" target="_blank">open game</a>',
+ whoami:'a visitor with good taste.',
+ date:function(){return new Date().toString()},
+ 'sudo hire-me':'<span class="c">[sudo]</span> permission granted. redirecting to WhatsApp… just kidding — type <span class="c">hire</span> 😄',
+ ls:'about  projects  stack  services  hire  contact  cv  play'
+};
+function esc(s){return s.replace(/[&<>]/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[m]})}
+function print(html){var d=D.createElement('div');d.innerHTML=html;out.appendChild(d);out.scrollTop=out.scrollHeight}
+function run(raw){var c=raw.trim().toLowerCase();if(!c)return;print('<span class="c">fayed@dhaka:~$</span> '+esc(raw));
+ if(c==='clear'){out.innerHTML='';return}
+ var r=C[c];if(typeof r==='function')r=r();
+ print(r||'<span class="d">command not found:</span> '+esc(c)+' <span class="d">— try</span> <span class="c">help</span>');
+ if(c==='cv')window.open('assets/Fayed-CV.pdf','_blank');}
+var hist=[],hi=0;
+form.addEventListener('submit',function(e){e.preventDefault();var v=inp.value;hist.push(v);hi=hist.length;run(v);inp.value=''});
+inp.addEventListener('keydown',function(e){if(e.key==='ArrowUp'&&hi>0){hi--;inp.value=hist[hi];e.preventDefault()}if(e.key==='ArrowDown'&&hi<hist.length){hi++;inp.value=hist[hi]||''}});
+var chips=D.querySelectorAll('[data-cmd]');for(var k=0;k<chips.length;k++)chips[k].addEventListener('click',function(){run(this.getAttribute('data-cmd'))});
+D.querySelector('.term').addEventListener('click',function(e){if(e.target.tagName!=='A'&&e.target.tagName!=='BUTTON'&&!matchMedia('(hover:none)').matches)inp.focus()});
+/* boot when visible */
+var booted=false;function boot(){if(booted)return;booted=true;print('<span class="d">Last login: '+new Date().toDateString()+' on ttys001</span>\nwelcome to <span class="c">fayed.sys</span> — type <span class="c">help</span> to begin.')}
+if('IntersectionObserver' in window){var tio=new IntersectionObserver(function(es){if(es[0].isIntersecting){boot();tio.disconnect()}},{threshold:.3});tio.observe(out)}else boot();
+})();
