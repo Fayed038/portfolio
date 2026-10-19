@@ -356,3 +356,6 @@ $$('[data-cmdk]').forEach(b => b.addEventListener('click', openP));
   m.addEventListener('click', function (e) { if (e.target.closest('a')) document.documentElement.classList.remove('menu-open'); });
 })();
 document.documentElement.classList.add('js-ok');
+
+;(function(){var b=document.getElementById('progress');if(!b)return;var t=false;function u(){var h=document.documentElement.scrollHeight-innerHeight;b.style.transform='scaleX('+(h>0?Math.min(1,pageYOffset/h):0)+')';t=false}addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u)}},{passive:true});u();
+var ms=document.querySelectorAll('.metric');if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.3});for(var i=0;i<ms.length;i++)io.observe(ms[i])}})();
