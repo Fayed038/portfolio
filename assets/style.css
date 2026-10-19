@@ -430,3 +430,27 @@ form.cf{grid-column:6/13}
  .prow .arr{border-color:rgba(212,255,58,.35);color:var(--accent)}
 }
 @media (prefers-reduced-motion:reduce){.aurora i{animation:none}}
+
+/* ===== v5: services, CV, WhatsApp ===== */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.svc-card{position:relative;border:1px solid var(--line);border-radius:14px;padding:30px;background:linear-gradient(170deg,rgba(255,255,255,.035),rgba(255,255,255,0) 50%),var(--bg-2);display:flex;flex-direction:column;overflow:hidden;transition:border-color .5s,transform .6s var(--ease)}
+.svc-card:hover{border-color:var(--line-2);transform:translateY(-4px)}
+.svc-card.hot{border-color:rgba(212,255,58,.35);background:linear-gradient(170deg,rgba(212,255,58,.09),rgba(212,255,58,0) 55%),var(--bg-2);box-shadow:0 30px 80px -40px rgba(212,255,58,.35)}
+.svc-top{display:flex;justify-content:space-between;align-items:center;color:var(--dim);margin-bottom:34px}
+.svc-ico{font-size:22px;color:var(--accent)}
+.svc-tag{color:#0A0A0A;background:var(--accent);padding:5px 10px;border-radius:999px;font-size:10px}
+.svc-card h3{font-weight:400;font-size:30px;letter-spacing:-.035em;line-height:1;margin-bottom:14px}
+.svc-card p{color:var(--dim);font-size:15px;line-height:1.6;margin-bottom:22px}
+.svc-card ul{list-style:none;margin-bottom:26px;flex:1}
+.svc-card li{padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;display:flex;gap:10px}
+.svc-card li::before{content:'✓';color:var(--accent);font-size:12px;padding-top:2px}
+.svc-meta{display:flex;justify-content:space-between;color:var(--dim);padding:14px 0;border-top:1px solid var(--line);margin-bottom:20px;font-size:10.5px}
+.svc-meta span:last-child{color:var(--text)}
+.svc-card .btn{justify-content:center}
+@media(max-width:900px){.svc{grid-template-columns:1fr}.svc-card{padding:24px}.svc-card h3{font-size:28px}}
+.cv-btn{margin-top:30px}
+.wa{position:fixed;right:20px;bottom:20px;z-index:120;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(37,211,102,.35);transition:transform .4s var(--ease)}
+.wa:hover{transform:scale(1.08)}
+.wa::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:50%;border:2px solid #25D366;animation:ring 2.4s var(--ease) infinite}
+.wa[hidden]{display:none}
+.svc-top{height:26px}.svc-ico{font-size:18px}
